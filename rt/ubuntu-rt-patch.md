@@ -43,8 +43,8 @@ make menuconfig
 #### Step 7
 Compile the kernel
 ```
-make -j20
 make modules
 sudo make modules_install -j20
+make
 sudo make install -j20
 ```
