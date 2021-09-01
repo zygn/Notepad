@@ -1,5 +1,7 @@
 # Install RT Kernel in Ubuntu 18.04 (Linux Kenel ~ 5.4.0-80-generic)
 
+Check this page: https://stackoverflow.com/questions/51669724/install-rt-linux-patch-for-ubuntu
+
 #### Step 1
 Make a working directory
 
@@ -38,6 +40,14 @@ sudo apt install -y libncurses-dev flex bison openssl libssl-dev dkms libelf-dev
 check the options
 ```
 make menuconfig
+
+# Make preemptible kernel setup
+General setup ---> [Enter]
+Preemption Model (Voluntary Kernel Preemption (Desktop)) [Enter]
+Fully Preemptible Kernel (RT) [Enter] #Select
+
+# Select <SAVE> and <EXIT>
+# Check .config file is made properly
 ```
 
 #### Step 7
@@ -47,4 +57,19 @@ make modules
 sudo make modules_install -j20
 make
 sudo make install -j20
+```
+
+#### Step 8
+Verif and update 
+```
+cd /boot
+ls
+sudo update-grub
+```
+
+#### Step 9
+check Kernel Version
+```
+uname -r 
+# 5.4.143-rt63
 ```
